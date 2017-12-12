@@ -61,26 +61,24 @@ void cadastrar(int *num){
                     strcpy(aluno[cont].situacao, "Reprovado por nota");
                 else
                     strcpy(aluno[cont].situacao, "Reprovado por ausencia e nota");
-            }
-            
-            
-            
+            }    
         }
         cont++;
     }while(aluno[cont-1].matricula!=0);
     *num=cont;
     fwrite(&aluno, sizeof(aluno),1, fp);
     fclose(fp);
-    fp= fopen(caminho, "rb");
+    /*fp= fopen(caminho, "rb");
     //Escreve todos os dados no arquivo
     fread(&a, sizeof(a), 1, fp);
     fclose(fp);
     for(i=0;i<cont-1;i++){
         printf("%s\n", a[i].situacao);
-    }
+    }*/
 
     
 }
+//Modulo de consulta a partir de um número de matrícula informado
 void consulta(int num){
     char nome[N], ende[N];
     cad aluno[N];
@@ -194,9 +192,8 @@ void altera(int num){
             fseek(fp,n, SEEK_SET); 
             fwrite(&aluno, sizeof(aluno), 1, fp);
             n = n + sizeof(cad);
-      
-        }
-        
+            fclose(fp);//Fechar arquivo
+        } 
     }while(mat!=0);
     
 }
