@@ -130,11 +130,12 @@ void altera(int num){
     do{
         printf("Digite o nome de um arquivo de turma\n");
         scanf(" %[^\n]", nome);
-        fp=fopen(nome, "r+b");
+        fp=fopen(nome, "rb"); //Alteração para abertura para ler
 
     }while(fp==NULL&&strcmp(nome,"fim")!=0);
     fread(&aluno, sizeof(aluno), 1, fp);
     fseek(fp,n, SEEK_SET); 
+    fclose(fp);
     do{
         printf("Informe um numero de matricula\n");
         scanf("%d", &mat);
@@ -189,7 +190,7 @@ void altera(int num){
                     }
                 }
             }
-            fseek(fp,n, SEEK_SET); 
+            fopen(nome,"wb"); //abertura para escrita
             fwrite(&aluno, sizeof(aluno), 1, fp);
             n = n + sizeof(cad);
             fclose(fp);//Fechar arquivo
