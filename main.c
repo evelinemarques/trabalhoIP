@@ -8,13 +8,15 @@
  * File:   main.c
  * Author: eveli
  *
- * Created on 9 de Dezembro de 2017, 18:20
+ * Created on 09 de Dezembro de 2017, 07:46
  */
 
 #include <stdio.h>
 #include <stdlib.h>
 
-
+/*
+ * 
+ */
 int menu(){
     int n;
     printf("1- Cadastrar turma\n");
@@ -24,25 +26,35 @@ int menu(){
     printf("5- Terminar a execucao\n");
     scanf("%d", &n);
     return n;
+
 }
 int main(int argc, char** argv) {
-    int n, aux, num;
+    int n, num;
     do{
         n=menu();
         if(n==1){
             cadastrar(&num);
+            if(num==0){
+                printf("Cadastro realizado com sucesso\n");
+            }
+            else{
+                printf("Cadastro não foi realizado");
+            }
         }
         else if(n==2){
-            consulta(num);
+            consulta();
 
         }
         else if(n==3){
-            altera(num);
+            altera();
+        }
+        else if(n==4){
+            lista();
         }
 
     }while(n!=5);
 
+
     return (EXIT_SUCCESS);
 }
-
 
